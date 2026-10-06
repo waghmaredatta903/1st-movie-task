@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie CRUD 1</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.css"
+        integrity="sha512-x9WwyMYBnlXMNQ6kQ/Lyzu1NqIhLQKL5Oq6xByfXuRj7s9CskyCbLv/1IjqzJmXwFXWr0ov6jBV7Qbc0hh9nHg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <div class="container pt-5 mb-5">
+        <div class="row">
+            <div class="col-6">
+                <a href="index.html" class="logo">
+                    <img src="assets/images/netflix.svg" alt="logo" title="logo">
+                </a>
+            </div>
+            <div class="col-6 text-right align-self-center">
+                <button class="btn btn-sm btn-pri" id="showModelBtn">Add Movie</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row" id="movieContainer">
+            <!-- <div class="col-md-3 mb-4">
+                <div class="card movieCard">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-10">
+                                <h4>Movie Title Movie Title Movie Title</h4>
+                            </div>
+                            <div class="col-2">
+                                <h5><span class="badge badge-success">5</span></h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <figure>
+                            <img src="assets/images/avengersimg.jpg" alt="">
+                            <figcaption>
+                                <h5>The Avengers</h5>
+                                <p>S.H.I.E.L.D. leader Nick Fury is compelled to launch the Avengers programme when Loki poses a threat to planet Earth. But the superheroes must learn to work together if they are to stop him in time.
+                                    </p>
+                            </figcaption>                            
+                        </figure>
+                    </div>                   
+                    <div class="card-footer d-flex justify-content-between">
+                        <button type="button" class="btn btn-sm btn-sec"> Edit</button>
+                        <button type="button" class="btn btn-sm btn-pri">Remove</button>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+
+    <div class="movieModel" id="movieModel">
+        <form id="MovieForm">
+            <div class="card">
+                <div class="card-header d-flex  justify-content-between">
+                    <h4 id="addMovie">Add Movie</h4>
+                    <h4 id="updateMovie" class="d-none">Update Movie</h4>
+                    <i class="fa-regular fa-circle-xmark fa-2x closeModel" role="button"></i>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="title"> Title </label>
+                        <input type="text" id="title" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="poster"> Movie Poster </label>
+                        <input type="text" id="poster" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="Description"> Movie Description </label>
+                        <textarea type="text" id="Description" class="form-control" rows="4"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="Rating"> Movie Rating </label>
+                        <select type="text" id="Rating" class="form-control">
+
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="date" class="form-control" id="year">
+                    </div>
+
+                </div>
+                <div class="card-footer d-flex justify-content-between">
+                    <button type="submit" class="btn btn-sm btn-sec" id="addMovieBtn"> Add Movie</button>
+                    <button type="button" class="btn btn-sm btn-sec d-none" id="updateBtn"> Update Movie</button>
+                    <button type="button" class="btn btn-sm btn-pri closeModel"> Close</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="backDrop closeModel" id="backDrop"></div>
+
+    <div class="spinner" id="spinner">
+        <div class="spinner-border text-danger" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="assets/js/app.js"></script>
+</body>
+
+</html>
