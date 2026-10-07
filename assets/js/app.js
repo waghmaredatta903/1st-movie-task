@@ -23,7 +23,7 @@ const updateMovie = document.getElementById('updateMovie')
 const spinner = document.getElementById("spinner")
 
 const BASE_URL = `https://crud-b22-e9992-default-rtdb.asia-southeast1.firebasedatabase.app/movies`;
-const MOVIE_URL = `${BASE_URL}/movies.json`
+const MOVIE_URL = `${BASE_URL}/movies.json`;
 
 const state = {
     moviesArr: [],
@@ -61,7 +61,7 @@ function rating(rating) {
     } else if (rating >= 5 && rating < 8) {
         return "badge-warning"
     } else {
-        return "badge-danger"
+        return "badge-danger"                   
     }
 
 }
@@ -69,7 +69,7 @@ function rating(rating) {
 function rendersfun(arr) {
     let result = ``;
     arr.forEach(movie => {
-        result += `<div class="col-md-3 mb-4" id="${movie.Id}>
+        result += `<div class="col-md-3 mb-4" id="${movie.id}>
                 <div class="card movieCard">
                     <div class="card-header">
                         <div class="row">
@@ -84,7 +84,7 @@ function rendersfun(arr) {
                     </div>
                     <div class="card-body">
                         <figure>
-                            <img src="${movie.poster}" alt="${movie.movieName}" title="${movie.title}">
+                            <img src="${movie.poster}" alt="${movie.title}" title="${movie.title}">
                             <figcaption>
                                 <h5>${movie.title}</h5>
                                 <p>${movie.Description}</p>
@@ -108,8 +108,7 @@ function makeApiCall(url, methodName, body = null) {
         method: methodName,
         body: body,
         headers: {
-            "content-type": "appliction/json",
-            "authorization": "JWT Token from LS"
+            "content-type": "application/json",
         }
     })
         .then(res => {
@@ -131,7 +130,7 @@ function fetchMovie() {
     handlespinner(true)
     makeApiCall(MOVIE_URL, "GET")
         .then(data => {
-            cl(data)
+            // cl(data)
             movieObj(data)
             // cl(state)
             rendersfun(state.moviesArr)
@@ -141,10 +140,10 @@ function fetchMovie() {
             cl(err)
         })
         .finally(() => {
-            handlespinner()
+            handlespinner(false)
         })
 }
-
+// fetchMovie();
 
 function onAddMovie(eve) {
     eve.preventDefault();
@@ -199,7 +198,8 @@ function onAddMovie(eve) {
             snackBar(`The New Movie ${NEW_MOVIE_OBJ.title} is added successfully`, `success`);
         })
         .catch(err => {
-            snackBar(err, "error")
+            // snackBar(err, "error")
+            cl(err)
         })
         .finally(() => {
             handlespinner()
@@ -220,7 +220,7 @@ function onEditMovie(ele) {
                 Description.value = res.Description,
                 Rating.value = res.Rating,
                 //  year.value = new Date(res.year).toLocaleDateString();
-                year.vlaue = `${res.year}`
+                year.value = `${res.year}`
 
             addMovieBtn.classList.add('d-none')
             updateBtn.classList.remove('d-none')
@@ -228,7 +228,7 @@ function onEditMovie(ele) {
             updateMovie.classList.remove('d-none')
         })
         .catch(err => {
-            cl(err, `error`)
+            cl(err)
         })
         .finally(() => {
             handlespinner()
@@ -286,11 +286,11 @@ function onUpdateMovie(ele) {
                     onModelToggle()
                     updateBtn.classList.add('d-none')
                     addMovieBtn.classList.remove('d-none')
-                    updateMovie.classList.add('d-none')
-                    addMovie.classList.remove('d-none')
+                    updateMovie.classList.remove('d-none')
+                    addMovie.classList.add('d-none')
         })
         .catch(err => {
-            cl(err , `error`)
+            cl(err)
         })
         .finally(() => {
             handlespinner()
@@ -315,7 +315,7 @@ function onRemoveMovie(ele) {
             makeApiCall(REMOVE_URL, "DELETE")
                 .then(res => {
                     let getIndex = state.moviesArr.findIndex(m => m.id === REMOVE_ID)
-                    state.moviesArr.splice(getIndex)
+                    state.moviesArr.splice(getIndex, 1);
                     ele.closest('.col-md-3').remove();
                     snackBar(`The Movie with id ${REMOVE_ID} is Deleted Successfully`, `success`)
                 })
